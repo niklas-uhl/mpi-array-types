@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
 
   // recv into contiguous vector
   std::vector<float> result(4, 0.0);
+  // send to self
   MPI_Sendrecv(v.data(), 1, arr_type, rank, 0, result.data(), 4, MPI_FLOAT,
                rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 

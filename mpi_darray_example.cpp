@@ -15,21 +15,13 @@ int main(int argc, char *argv[]) {
   std::iota(v.begin(), v.end(), 0.0);
   std::println("v: {}", v);
 
-  // // construct the subarray type for the inner 2x2 square
-  // std::array<int, 2> arr_size = {4, 4};
-  // std::array<int, 2> arr_subsize = {2, 2};
-  // std::array<int, 2> arr_substart = {1, 1};
-  // MPI_Datatype arr_type = MPI_DATATYPE_NULL;
-  // MPI_Type_create_subarray(2, arr_size.data(), arr_subsize.data(),
-  //                          arr_substart.data(), MPI_ORDER_C, MPI_FLOAT,
-  //                          &arr_type);
-  // MPI_Type_commit(&arr_type);
-  std::array<int, 2> gsize_array = {4, 4};
+  std::array<int, 2> gsize_array = {4, 4}; // global array size
   std::array<int, 2> distrib_array = {MPI_DISTRIBUTE_BLOCK,
                                       MPI_DISTRIBUTE_BLOCK};
-  std::array<int, 2> darg_array = {MPI_DISTRIBUTE_DFLT_DARG,
-                                   MPI_DISTRIBUTE_DFLT_DARG};
-  std::array<int, 2> psize_array = {2, 2};
+  std::array<int, 2> darg_array = {
+      MPI_DISTRIBUTE_DFLT_DARG, // distribution arguments
+      MPI_DISTRIBUTE_DFLT_DARG};
+  std::array<int, 2> psize_array = {2, 2}; // processor grid dimensions
 
   std::array<MPI_Datatype, 4> chunks;
   // define type corresponding to disjoint subarrays of size 2x2
